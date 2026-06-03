@@ -221,16 +221,16 @@ const slidePath = (slug: string) => `${BASE}/slide/${slug}`;
 
     <nav
       aria-label="Slide navigation"
-      class="fixed bottom-4 right-6 flex gap-1 items-center font-mono text-[0.95rem] bg-white/90 backdrop-blur-sm px-2 py-1 rounded z-50"
+      class="fixed bottom-4 right-6 flex gap-1 items-center font-mono text-[0.95rem] text-graphite bg-paper/95 backdrop-blur-sm px-2 py-1 rounded shadow-sm z-50"
     >
       {prev !== undefined && (
-        <a href={slidePath(prev)} aria-label="Previous slide" rel="prev" class="px-3 py-2 no-underline text-slate"><span aria-hidden="true">←</span></a>
+        <a href={slidePath(prev)} aria-label="Previous slide" rel="prev" class="px-3 py-2 no-underline text-graphite"><span aria-hidden="true">←</span></a>
       )}
-      <span class="text-slate-700 px-1" aria-label={`Slide ${order} of ${total}`}>
+      <span class="text-graphite/70 px-1" aria-label={`Slide ${order} of ${total}`}>
         <span aria-hidden="true" data-counter>{order}</span><span aria-hidden="true"> / </span><span aria-hidden="true">{total}</span>
       </span>
       {next !== undefined && (
-        <a href={slidePath(next)} aria-label="Next slide" rel="next" class="px-3 py-2 no-underline text-slate"><span aria-hidden="true">→</span></a>
+        <a href={slidePath(next)} aria-label="Next slide" rel="next" class="px-3 py-2 no-underline text-graphite"><span aria-hidden="true">→</span></a>
       )}
     </nav>
 

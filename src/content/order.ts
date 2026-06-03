@@ -13,10 +13,11 @@ export const slideOrder = [
   "reintroduction",
   "architecture",
   "launch-scope",
-  "tms-access",
   "tensions",
   "design-direction",
   "wireframes",
+  "tms-access",
   "open-questions",
   "over-to-design",
+  "next-steps",
 ] as const;

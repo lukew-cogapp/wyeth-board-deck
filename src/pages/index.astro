@@ -25,16 +25,23 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
     <ClientRouter />
   </head>
   <body class="bg-paper text-graphite m-0">
+    <span
+      aria-label="Cogapp"
+      class="fixed top-5 left-6 block w-[95px] h-[20px] bg-current opacity-70 z-50"
+      style={`-webkit-mask:url(${BASE}/cogapp-logo.svg) left center/contain no-repeat;mask:url(${BASE}/cogapp-logo.svg) left center/contain no-repeat;`}
+    ></span>
+
     <main class="max-w-[1100px] mx-auto px-12 min-h-screen flex flex-col justify-center py-[clamp(1.5rem,6vh,5rem)]">
       <header class="mb-[clamp(1.5rem,5vh,4rem)] shrink-0">
         <p class="font-sans font-medium text-sm uppercase tracking-[0.1em] opacity-85 mb-2">
           Discovery findings · Board presentation
         </p>
         <h1 class="font-serif text-[clamp(2.5rem,7vh,5.5rem)] leading-[1.02] tracking-tight mb-[clamp(1rem,3vh,2rem)]">
-          The Wyeth Foundation <em class="italic text-bark">for American Art</em>
+          The Wyeth Foundation for American Art
         </h1>
         <a
           href={`${BASE}/slide/${slideOrder[0]}`}
+          data-first-slide={slideOrder[0]}
           class="inline-block font-sans text-lg font-medium text-paper bg-graphite border-2 border-graphite px-7 py-3 rounded-full no-underline transition-transform hover:-translate-y-0.5"
         >
           Start →
@@ -62,5 +69,25 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
         ))}
       </ol>
     </main>
+
+    <script>
+      import { navigate } from "astro:transitions/client";
+      const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+      const FIRST = document.querySelector<HTMLElement>("[data-first-slide]")?.dataset.firstSlide;
+
+      const onKey = (e: KeyboardEvent) => {
+        if (!FIRST) return;
+        if (e.key === "ArrowRight" || e.key === "ArrowDown" || e.key === "PageDown" || e.key === "Enter") {
+          e.preventDefault();
+          navigate(`${BASE}/slide/${FIRST}`);
+        }
+      };
+      const init = () => {
+        document.removeEventListener("keydown", onKey);
+        document.addEventListener("keydown", onKey);
+      };
+      document.addEventListener("astro:page-load", init);
+      if (document.readyState !== "loading") init();
+    </script>
   </body>
 </html>
