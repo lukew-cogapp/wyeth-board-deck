@@ -1,0 +1,66 @@
+---
+import { getCollection } from "astro:content";
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+import { slideOrder } from "../content/order";
+
+const all = await getCollection("slides");
+const bySlug = new Map(all.map((s) => [s.id, s]));
+const ordered = slideOrder.map((slug, i) => {
+  const s = bySlug.get(slug);
+  if (!s) throw new Error(`Order references missing slide: ${slug}`);
+  return { ...s, order: i + 1 };
+});
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Wyeth Foundation · Discovery findings</title>
+    <link rel="icon" type="image/png" href={`${BASE}/favicon.png`} />
+    <ClientRouter />
+  </head>
+  <body class="bg-paper text-graphite m-0">
+    <main class="max-w-[1100px] mx-auto px-12 min-h-screen flex flex-col justify-center py-[clamp(1.5rem,6vh,5rem)]">
+      <header class="mb-[clamp(1.5rem,5vh,4rem)] shrink-0">
+        <p class="font-sans font-medium text-sm uppercase tracking-[0.1em] opacity-85 mb-2">
+          Discovery findings · Board presentation
+        </p>
+        <h1 class="font-serif text-[clamp(2.5rem,7vh,5.5rem)] leading-[1.02] tracking-tight mb-[clamp(1rem,3vh,2rem)]">
+          The Wyeth Foundation <em class="italic text-bark">for American Art</em>
+        </h1>
+        <a
+          href={`${BASE}/slide/${slideOrder[0]}`}
+          class="inline-block font-sans text-lg font-medium text-paper bg-graphite border-2 border-graphite px-7 py-3 rounded-full no-underline transition-transform hover:-translate-y-0.5"
+        >
+          Start →
+        </a>
+      </header>
+
+      <ol class="list-none p-0 m-0 columns-1 md:columns-2 gap-12 shrink-0">
+        {ordered.map((s) => (
+          <li class="break-inside-avoid">
+            <a
+              href={`${BASE}/slide/${s.id}`}
+              class="grid grid-cols-[2.5em_1fr_auto] gap-4 items-baseline py-[clamp(0.25rem,0.9vh,0.6rem)] text-graphite no-underline border-b border-graphite/10 transition-colors hover:bg-river-silt"
+            >
+              <span class="font-mono text-xs opacity-50 tabular-nums">
+                {String(s.order).padStart(2, "0")}
+              </span>
+              <span class="font-serif text-lg leading-tight">{s.data.title}</span>
+              {s.data.section && (
+                <span class="font-sans text-xs uppercase tracking-[0.08em] opacity-50">
+                  {s.data.section}
+                </span>
+              )}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,278 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Fonts — Tiempos (Klim Type Foundry, licensed). Files in public/fonts/tiempos/.
+   Tiempos Headline drives headings + the wordmark; Tiempos Text drives body/UI.
+--------------------------------------------------------------------------- */
+
+/* Tiempos Headline */
+@font-face { font-family: "Tiempos Headline"; font-style: normal; font-weight: 300; src: url("/wyeth-board-deck/fonts/tiempos/tiempos-headline-light.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Tiempos Headline"; font-style: italic; font-weight: 300; src: url("/wyeth-board-deck/fonts/tiempos/tiempos-headline-light-italic.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Tiempos Headline"; font-style: normal; font-weight: 400; src: url("/wyeth-board-deck/fonts/tiempos/tiempos-headline-regular.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Tiempos Headline"; font-style: italic; font-weight: 400; src: url("/wyeth-board-deck/fonts/tiempos/tiempos-headline-regular-italic.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Tiempos Headline"; font-style: normal; font-weight: 500; src: url("/wyeth-board-deck/fonts/tiempos/tiempos-headline-medium.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Tiempos Headline"; font-style: italic; font-weight: 500; src: url("/wyeth-board-deck/fonts/tiempos/tiempos-headline-medium-italic.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Tiempos Headline"; font-style: normal; font-weight: 600; src: url("/wyeth-board-deck/fonts/tiempos/tiempos-headline-semibold.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Tiempos Headline"; font-style: italic; font-weight: 600; src: url("/wyeth-board-deck/fonts/tiempos/tiempos-headline-semibold-italic.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Tiempos Headline"; font-style: normal; font-weight: 700; src: url("/wyeth-board-deck/fonts/tiempos/tiempos-headline-bold.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Tiempos Headline"; font-style: italic; font-weight: 700; src: url("/wyeth-board-deck/fonts/tiempos/tiempos-headline-bold-italic.woff2") format("woff2"); font-display: swap; }
+
+/* Tiempos Text */
+@font-face { font-family: "Tiempos Text"; font-style: normal; font-weight: 400; src: url("/wyeth-board-deck/fonts/tiempos/tiempos-text-regular.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Tiempos Text"; font-style: italic; font-weight: 400; src: url("/wyeth-board-deck/fonts/tiempos/tiempos-text-regular-italic.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Tiempos Text"; font-style: normal; font-weight: 500; src: url("/wyeth-board-deck/fonts/tiempos/tiempos-text-medium.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Tiempos Text"; font-style: italic; font-weight: 500; src: url("/wyeth-board-deck/fonts/tiempos/tiempos-text-medium-italic.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Tiempos Text"; font-style: normal; font-weight: 600; src: url("/wyeth-board-deck/fonts/tiempos/tiempos-text-semibold.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Tiempos Text"; font-style: italic; font-weight: 600; src: url("/wyeth-board-deck/fonts/tiempos/tiempos-text-semibold-italic.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Tiempos Text"; font-style: normal; font-weight: 700; src: url("/wyeth-board-deck/fonts/tiempos/tiempos-text-bold.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Tiempos Text"; font-style: italic; font-weight: 700; src: url("/wyeth-board-deck/fonts/tiempos/tiempos-text-bold-italic.woff2") format("woff2"); font-display: swap; }
+
+@theme {
+  --font-sans: "Tiempos Text", Georgia, "Times New Roman", serif;
+  --font-serif: "Tiempos Headline", Georgia, "Times New Roman", serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Wyeth Immersion palette — nine themes extracted from the surfaces and
+     light of Andrew Wyeth's paintings. Sampled from the Figma immersion board. */
+
+  /* T1 — neutrals (graphite & ash, the base palette) */
+  --color-graphite: #232121;
+  --color-bark: #74695d;
+  --color-ash-gray: #908484;
+  --color-paper: #f2ecdc;
+
+  /* T2 — Brandywine greens */
+  --color-lichen-green: #7fa881;
+  --color-river-silt: #d5c1ab;
+  --color-thicket: #2f2828;
+
+  /* T3 — ember / autumn */
+  --color-ember-orange: #e58e2d;
+  --color-bleak-earth: #cfccc0;
+  --color-rock-shadow: #555049;
+
+  /* T4 — murk / field gold */
+  --color-murk-gold: #eab800;
+  --color-murk-sand: #d7b894;
+  --color-murk-brown: #4a4229;
+
+  /* T5 — dress */
+  --color-dress-pink: #e9c8d1;
+  --color-tawny-field: #4c512b;
+
+  /* T6 — stripe / interior */
+  --color-stripe-blue: #c2dde5;
+  --color-moonglow: #fffcf5;
+  --color-burlap-natural: #7c7255;
+
+  /* T7 — flame / crimson */
+  --color-flame-crimson: #d34e48;
+  --color-aged-bone: #c7bda8;
+  --color-flame-burgundy: #48282d;
+
+  /* T8 — storm */
+  --color-storm-gray: #babfbc;
+  --color-storm-blue: #144f77;
+
+  /* T9 — squall */
+  --color-shallow-blue: #83a0a4;
+  --color-squall-blue: #0d344e;
+
+  /* semantic roles */
+  --color-grey: #74695d;
+  --color-focus: #144f77;
+
+  --text-3xl: 3.815rem;
+  --text-4xl: 4.768rem;
+  --text-5xl: 5.96rem;
+}
+
+@layer base {
+  html, body {
+    background: var(--color-paper);
+    color: var(--color-graphite);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--color-ember-orange);
+    color: var(--color-graphite);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideOutLeft {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(-40px); }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideOutRight {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(40px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* Slide content typography (applied via .prose-slide on slide content wrapper) */
+@utility prose-slide {
+  & h1 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin: 0 0 2rem;
+  }
+  & h2 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 0 0 2rem;
+  }
+  & h3 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    margin: 0 0 1rem;
+  }
+  & p {
+    font-size: clamp(1.35rem, 1.9vw, 1.7rem);
+    line-height: 1.5;
+    margin: 0 0 1.15rem;
+    max-width: 62ch;
+  }
+  & ul:not(.bullets), & ol {
+    font-size: clamp(1.35rem, 1.9vw, 1.7rem);
+    padding-left: 2rem;
+    margin: 0 0 1.5rem;
+    list-style: disc;
+  }
+  & ol { list-style: decimal; }
+  & li { margin-bottom: 0.5rem; line-height: 1.45; }
+  & table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+    margin: 0 0 1.5rem;
+  }
+  & th, & td {
+    border-bottom: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+    padding: 0.55rem 1rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  & th {
+    font-family: var(--font-sans);
+    font-size: 0.7em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.7;
+  }
+  & blockquote {
+    border-left: 3px solid currentColor;
+    padding-left: 1.5rem;
+    margin: 0 0 1.5rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.7rem, 2.6vw, 2.4rem);
+    line-height: 1.3;
+    max-width: 48ch;
+  }
+  & strong { font-weight: 600; }
+  /* Quote attribution line */
+  & .cite {
+    display: block;
+    font-family: var(--font-sans);
+    font-style: normal;
+    font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+    letter-spacing: 0.02em;
+    opacity: 0.85;
+    margin-top: 0.6rem;
+  }
+  & .cite::before { content: "– "; }
+  /* Lead paragraph for statement slides — large, for Zoom legibility */
+  & .lead {
+    font-size: clamp(1.9rem, 2.8vw, 2.6rem);
+    line-height: 1.35;
+    margin: 0 0 1.25rem;
+    max-width: 46ch;
+  }
+  & a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.15s ease;
+  }
+  & a:hover {
+    text-decoration-color: var(--color-ember-orange);
+    text-decoration-thickness: 2px;
+  }
+  & a:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+/* Laptop screens: keep slide on one viewport, no scroll */
+@media (max-height: 900px) {
+  .prose-slide h1 { font-size: clamp(2.8rem, 6.5vh, 4.5rem); margin: 0 0 1.25rem; }
+  .prose-slide h2 { font-size: clamp(2.1rem, 4.8vh, 3rem); margin: 0 0 1rem; }
+  .prose-slide h3 { font-size: clamp(1.5rem, 3vh, 1.9rem); margin: 0 0 0.6rem; }
+  .prose-slide p { font-size: clamp(1.35rem, 2.4vh, 1.6rem); margin: 0 0 0.7rem; }
+  .prose-slide ul:not(.bullets), .prose-slide ol {
+    font-size: clamp(1.35rem, 2.4vh, 1.6rem);
+    margin: 0 0 0.9rem;
+  }
+  .prose-slide .lead { font-size: clamp(1.8rem, 3.6vh, 2.4rem); margin: 0 0 1rem; }
+  .prose-slide .bullets li { font-size: clamp(1.4rem, 2.5vh, 1.75rem); }
+  .prose-slide li { margin-bottom: 0.35rem; }
+  .prose-slide blockquote {
+    font-size: clamp(1.7rem, 3.4vh, 2.2rem);
+    padding-left: 1.2rem;
+    margin: 0 0 0.9rem;
+  }
+  .prose-slide table { font-size: clamp(1.1rem, 2vh, 1.3rem); margin: 0 0 0.8rem; }
+  .prose-slide th, .prose-slide td { padding: 0.45rem 0.8rem; }
+
+  main[data-slide] {
+    justify-content: flex-start;
+    padding-top: 6vh;
+  }
+  main[data-slide][style*="grid-template-rows"] {
+    grid-template-rows: 6vh auto 1fr !important;
+  }
+}
+
+/* Slide pages allow scrolling when content overflows */
+main[data-slide] {
+  overflow-y: auto;
+}
