@@ -86,6 +86,13 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
         document.removeEventListener("keydown", onKey);
         document.addEventListener("keydown", onKey);
       };
+      // Remove our listener before the page is swapped out, otherwise it
+      // leaks onto slide pages (document survives ClientRouter swaps) and
+      // races the slide's own handler — sending ArrowRight back to the
+      // first slide instead of advancing.
+      document.addEventListener("astro:before-swap", () => {
+        document.removeEventListener("keydown", onKey);
+      });
       document.addEventListener("astro:page-load", init);
       if (document.readyState !== "loading") init();
     </script>

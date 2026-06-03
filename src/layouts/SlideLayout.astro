@@ -291,8 +291,11 @@ const slidePath = (slug: string) => `${BASE}/slide/${slug}`;
         }
       };
 
+      document.addEventListener("astro:before-swap", () => {
+        document.removeEventListener("keydown", onKey);
+      });
       document.addEventListener("astro:page-load", init);
       if (document.readyState !== "loading") init();
-    </script>
+</script>
   </body>
 </html>
